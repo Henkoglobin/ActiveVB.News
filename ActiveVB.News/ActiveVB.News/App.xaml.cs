@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-
+using ActiveVB.News.Rss;
 using Xamarin.Forms;
 
 namespace ActiveVB.News
@@ -23,6 +24,15 @@ namespace ActiveVB.News
 						new Label {
 							XAlign = TextAlignment.Center,
 							Text = "Welcome to Xamarin Forms!"
+						},
+						new Button
+						{
+							Text= "Laden",
+							Command = new Command(async () => {
+								var client = new RssClient();
+								var items = await client.Load(new Uri("http://www.activevb.de/news/"));
+								Debugger.Break();
+							})
 						}
 					}
 				}

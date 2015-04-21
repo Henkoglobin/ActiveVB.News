@@ -7,10 +7,12 @@ using Xamarin.Forms;
 
 namespace ActiveVB.News
 {
-	public class App : Application
+	public partial class App : Application
 	{
 		public App()
 		{
+			InitializeComponent();
+
 			// The root page of your application
 			MainPage = new ContentPage
 			{

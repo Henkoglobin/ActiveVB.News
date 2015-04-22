@@ -23,7 +23,9 @@
 						   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
 						   Grid.Row="1" Grid.Column="0" />
 		
-		<ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Feed}" SelectedItem="{Binding SelectedItem}">
+		<ListView ItemsSource="{Binding Feed}" SelectedItem="{Binding SelectedItem}"
+				  HasUnevenRows="True"
+				  Grid.Row="1" Grid.Column="0" >
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
@@ -36,7 +38,7 @@
 							
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
 							</Grid.ColumnDefinitions>
 							
 							<Label Text="{Binding Title}"

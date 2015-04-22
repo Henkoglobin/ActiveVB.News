@@ -1,6 +1,6 @@
 using System;
 
-namespace ActiveVB.News.Rss
+namespace ActiveVB.News.Models
 {
 	public class RssFeedItem
 	{

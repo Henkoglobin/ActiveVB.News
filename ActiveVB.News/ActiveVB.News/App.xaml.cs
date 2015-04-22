@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using ActiveVB.News.Rss;
+using ActiveVB.News.Views;
 using Xamarin.Forms;
 
 namespace ActiveVB.News
@@ -15,28 +16,7 @@ namespace ActiveVB.News
 			InitializeComponent();
 
 			// The root page of your application
-			MainPage = new ContentPage
-			{
-				Content = new StackLayout
-				{
-					VerticalOptions = LayoutOptions.Center,
-					Children = {
-						new Label {
-							XAlign = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						},
-						new Button
-						{
-							Text= "Laden",
-							Command = new Command(async () => {
-								var client = new RssClient();
-								var items = await client.Load(new Uri("http://www.activevb.de/news/"));
-								Debugger.Break();
-							})
-						}
-					}
-				}
-			};
+			MainPage = new MainView();
 		}
 
 		protected override void OnStart()

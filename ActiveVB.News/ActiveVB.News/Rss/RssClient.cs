@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using ActiveVB.News.Models;
 
 namespace ActiveVB.News.Rss
 {
 	public class RssClient
 	{
-		public async Task<IList<RssFeedItem>> Load(Uri uri)
+		public static async Task<IEnumerable<RssFeedItem>> Load(Uri uri)
 		{
 			using (var client = new HttpClient())
 			{
@@ -26,12 +25,11 @@ namespace ActiveVB.News.Rss
 
 				return document.Root.Descendants()
 					.Where(x => x.Name.LocalName == "item")
-					.Select(x => ParseItem(x))
-					.ToList();
+					.Select(x => ParseItem(x));
 			}
 		}
 
-		private RssFeedItem ParseItem(XElement item)
+		private static RssFeedItem ParseItem(XElement item)
 		{
 			var title = item.Descendants().Single(x => x.Name.LocalName == "title").Value;
 			var linkString = item.Descendants().Single(x => x.Name.LocalName == "link").Value;
